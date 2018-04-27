@@ -78,14 +78,7 @@ $(document).ready(function () {
         var nextTrain = moment().add(untilNext, "minutes").format("HH:mm");
         console.log("nextTrain",nextTrain);
 
-        //Send Data to Firebase
-        // <th scope="col">Train Name</th>
-        // <th scope="col">Destination</th>
-        // <th scope="col">Frequency (min)</th>
-        // <th scope="col">Next Arrival</th>
-        // <th scope="col">Minutes Away</th>
-        // <th scope="col">Remove Row</th>
-
+     
         database.ref().push({
             trainName: name,
             destination: dest,
@@ -100,13 +93,53 @@ $(document).ready(function () {
     // Firebase watcher + initial load on page 
     database.ref().on("child_added", function(childSnapshot) {
 
+        console.log(childSnapshot.val().trainName);
+        console.log(childSnapshot.val().destination);
+        console.log(childSnapshot.val().frequency);
         console.log(childSnapshot.val().nextTrain);
+    
+        //Unique identifier
+        console.log(childSnapshot.key);
+
+        //Create button with unique Firebase identifier data-class
+        var removeButton = $("<button>");
+        removeButton.addClass("btn btn-danger remove-button").attr("data-id",childSnapshot.key).text("X");
+
+        var buttonContainer = $("<td>");
+        buttonContainer.append(removeButton);
+
+        //Create and append a new table row
+        var newRow = $("<tr>");
+
+        //COL TRAIN NAME
+        newRow.append(`<td scope="row">${childSnapshot.val().trainName}</td>`)
+        //COL DESTINATION 
+        .append(`<td>${childSnapshot.val().destination}</td>`)
+        //COL TRAIN FREQUENCY 
+        .append(`<td>${childSnapshot.val().frequency}</td>`)
+        //COL NEXT TRAIN
+        .append(`<td>${childSnapshot.val().nextTrain}</td>`)
+        //Minutes Away
+        .append(`<td>${childSnapshot.val().minutesAway}</td>`)
+        //Add Remove Button into last column of row
+        .append(buttonContainer);
+
+        
+        
+
+        $("tbody").append(newRow);
+    
 
 
 
     });
+
+
+//    $("body").on("click",".remove-button", function() {
+//         $("this").
+//         ref.child(key).remove();
+//    });
     
-    //Create and append a new table row
 
 
 });
