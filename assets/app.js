@@ -93,14 +93,20 @@ $(document).ready(function () {
             nextTrain: nextTrain,
             minutesAway: untilNext,
           });
-          
-        //Create and append a new table row
 
+    });
+
+
+    // Firebase watcher + initial load on page 
+    database.ref().on("child_added", function(childSnapshot) {
+
+        console.log(childSnapshot.val().nextTrain);
 
 
 
     });
-
+    
+    //Create and append a new table row
 
 
 });
