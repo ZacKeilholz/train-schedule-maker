@@ -61,6 +61,10 @@ $(document).ready(function () {
     
         var startTime = moment(($("#input-time").val().trim()), "HH:mm").subtract(1, "years");
 
+        //Clear Values from Form
+        $(this).closest('form').find("input[type=text], textarea").val("");
+
+
 
         //Difference in time (in minutes) between train start time (1 year before) and now.
         var diffTime = moment().diff(moment(startTime), "minutes"); 
@@ -103,7 +107,7 @@ $(document).ready(function () {
     
         //Create button with unique Firebase identifier data-class
         var removeButton = $("<button>");
-        removeButton.addClass("btn btn-danger remove-button").attr("data-id",childSnapshot.key).text("X");
+        removeButton.addClass("btn btn-danger remove-button").attr("type","button").attr("data-id",childSnapshot.key).attr("data-toggle","modal").attr("data-target","warningModal").text("X");
 
         var buttonContainer = $("<td>");
         buttonContainer.append(removeButton);
@@ -125,8 +129,7 @@ $(document).ready(function () {
         .append(buttonContainer);
 
         
-        
-
+    
         $("tbody").append(newRow);
     
 
@@ -136,14 +139,35 @@ $(document).ready(function () {
 
 
    $("body").on("click",".remove-button", function() {
+
+
+    //Get the unique Firebase key from the button element
        var uniqueKey = $(this).attr("data-id");
-       console.log(uniqueKey);
+
+    //Remove data node with matching key in Firebase
        database.ref().child(uniqueKey).remove();
+
+    //Delete the row locally so page and or firebase doesn't need to be refreshed to show this change in the table
        $(this).closest("tr").remove();
-        //database.child(uniqueKey).remove();
 
    });
-    
 
 
 });
+
+
+/**
+ * 
+ * Bugs/Cool Features:
+ * 
+ * -Modal popup asking if you're SURE You want to do this? when delete button is pressed.
+ * 
+ * -Clear form button
+ * 
+ * -clean things up/add color
+ * 
+ * -Add bootstrap alert to user if text input is in a bad format
+ * 
+ * -
+ * 
+ */
