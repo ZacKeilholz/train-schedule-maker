@@ -2,8 +2,6 @@
 //=================================
 
 
-
-
 //Global Vars 
 //=================================
 
@@ -60,11 +58,10 @@ $(document).ready(function () {
         var untilNext = freq - sinceLast; 
 
         //Add untilNext minutes to current time
-
         var nextTrain = moment().add(untilNext,"minutes");
         console.log("nextTrain",nextTrain);
 
-
+        
         //Create object for storing and accessing train info
         var trainInput = {
             name: name,
@@ -72,12 +69,6 @@ $(document).ready(function () {
             startTime: startTime,
             frequency: freq
         };
-
-        //Format Date using moment.js and send to console
-
-        //var startTimePretty = moment.unix(trainInput.startTime).format("MM/DD/YY");
-
-
 
 
         //Output form input to Console.
