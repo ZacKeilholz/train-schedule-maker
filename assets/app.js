@@ -1,10 +1,23 @@
 //JS Setup Functions (Firebase, etc) 
 //=================================
 
+// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyA_RETN3s07xb_kc-wk1bgfVpKVS5zDTAY",
+    authDomain: "train-scheduler-database-a97de.firebaseapp.com",
+    databaseURL: "https://train-scheduler-database-a97de.firebaseio.com",
+    projectId: "train-scheduler-database-a97de",
+    storageBucket: "train-scheduler-database-a97de.appspot.com",
+    messagingSenderId: "749290737259"
+  };
 
+  firebase.initializeApp(config);
+
+  
 //Global Vars 
 //=================================
 
+var database = firebase.database();
 
 
 
@@ -61,15 +74,7 @@ $(document).ready(function () {
         var nextTrain = moment().add(untilNext,"minutes");
         console.log("nextTrain",nextTrain);
 
-        
-        //Create object for storing and accessing train info
-        var trainInput = {
-            name: name,
-            destination: dest,
-            startTime: startTime,
-            frequency: freq
-        };
-
+    
 
         //Output form input to Console.
         console.log("name", name);
@@ -79,7 +84,21 @@ $(document).ready(function () {
         console.log("now", now);
 
 
+        //Send Data to Firebase
+        // <th scope="col">Train Name</th>
+        // <th scope="col">Destination</th>
+        // <th scope="col">Frequency (min)</th>
+        // <th scope="col">Next Arrival</th>
+        // <th scope="col">Minutes Away</th>
+        // <th scope="col">Remove Row</th>
 
+        database.ref().push({
+            trainName: name,
+            destination: dest,
+            frequency: freq,
+            nextTrain: nextTrain,
+            minutesAway: untilNext,
+          });
         //Create and append a new table row
 
 
