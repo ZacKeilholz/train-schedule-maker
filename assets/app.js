@@ -100,7 +100,7 @@ $(document).ready(function () {
     
         //Unique identifier
         console.log(childSnapshot.key);
-
+    
         //Create button with unique Firebase identifier data-class
         var removeButton = $("<button>");
         removeButton.addClass("btn btn-danger remove-button").attr("data-id",childSnapshot.key).text("X");
@@ -135,10 +135,14 @@ $(document).ready(function () {
     });
 
 
-//    $("body").on("click",".remove-button", function() {
-//         $("this").
-//         ref.child(key).remove();
-//    });
+   $("body").on("click",".remove-button", function() {
+       var uniqueKey = $(this).attr("data-id");
+       console.log(uniqueKey);
+       database.ref().child(uniqueKey).remove();
+       $(this).closest("tr").remove();
+        //database.child(uniqueKey).remove();
+
+   });
     
 
 
