@@ -53,36 +53,30 @@ $(document).ready(function () {
 
     $("#submit-button").on("click", function (event) {
         event.preventDefault();
+        var now = moment();
 
         var name = $("#input-name").val().trim();
         var dest = $("#input-destination").val().trim();
-        var freq = parseInt($("#input-time").val().trim());
+        var freq = parseInt($("#input-frequency").val().trim());
     
         var startTime = moment(($("#input-time").val().trim()), "HH:mm").subtract(1, "years");
 
 
         //Difference in time (in minutes) between train start time (1 year before) and now.
         var diffTime = moment().diff(moment(startTime), "minutes"); 
-
+        console.log("diffTime", diffTime);
+    
         //find minutes since last train by taking modulo of diffTime and frequency
         var sinceLast = diffTime % freq;
-
+        console.log("sincelast", sinceLast);
+        
         //Find out how many minutes until next train (freq-sinceLast);
         var untilNext = freq - sinceLast; 
+        console.log("untilnext", untilNext);
 
         //Add untilNext minutes to current time
-        var nextTrain = moment().add(untilNext,"minutes");
+        var nextTrain = moment().add(untilNext, "minutes").format("HH:mm");
         console.log("nextTrain",nextTrain);
-
-    
-
-        //Output form input to Console.
-        console.log("name", name);
-        console.log("dest", dest);
-        //console.log("startTime", startTime);
-        console.log("freq", freq);
-        console.log("now", now);
-
 
         //Send Data to Firebase
         // <th scope="col">Train Name</th>
@@ -99,6 +93,7 @@ $(document).ready(function () {
             nextTrain: nextTrain,
             minutesAway: untilNext,
           });
+          
         //Create and append a new table row
 
 
