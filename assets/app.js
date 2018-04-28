@@ -21,31 +21,6 @@ var database = firebase.database();
 
 
 
-
-
-
-//Jquery HTML Targets 
-//=================================
-
-//var $exampleTarget = $("#example-container");
-// var submitTarget = $("#submit-button");
-
-// //Form Inputs
-// var inputName = $("#input-name");
-// var inputDest = $("#input-destination");
-// var inputStartTime = $("#input-time");
-// var inputFreq = $("#input-freq");
-
-
-
-
-
-//Misc. Functions
-//=================================
-
-
-
-
 //JQuery Events / Event Listeners
 //=================================
 $(document).ready(function () {
@@ -55,6 +30,7 @@ $(document).ready(function () {
         event.preventDefault();
         var now = moment();
 
+        //Grab Data from HTML Inputs
         var name = $("#input-name").val().trim();
         var dest = $("#input-destination").val().trim();
         var freq = parseInt($("#input-frequency").val().trim());
@@ -116,7 +92,7 @@ $(document).ready(function () {
         var newRow = $("<tr>");
 
         //COL TRAIN NAME
-        newRow.append(`<td scope="row">${childSnapshot.val().trainName}</td>`)
+        newRow.append(`<th scope="row">${childSnapshot.val().trainName}</th>`)
         //COL DESTINATION 
         .append(`<td>${childSnapshot.val().destination}</td>`)
         //COL TRAIN FREQUENCY 
@@ -164,9 +140,9 @@ $(document).ready(function () {
  * 
  * -Clear form button
  * 
- * -clean things up/add color
+ * -Clean things up/add color
  * 
- * -Add bootstrap alert to user if text input is in a bad format
+ * -Add bootstrap alert to user if date input is in a bad format
  * 
  * -
  * 

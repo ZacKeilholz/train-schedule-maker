@@ -15,31 +15,34 @@
 
     <!-- FontAwesome CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <style>
+    
+    
+    </style>
 
     <title>Train-Scheduler!</title>
-
+    
 </head>
 
 <body>
     <div class="container">
         <div class="container">
             <!--Jumbotron Header-->
-            <div class="jumbotron jumbotron-fluid">
+            <div class="jumbotron jumbotron-fluid bg-cover">
                 <div class="container">
-                    <h1 class="display-3">Train-Scheduler
+                    <h1 class="display-3">Train-Scheduler-Machine
                     </h1>
                     <p class="lead">Any Time is Train Time</p>
                     <hr class="my-2">
-                    <p>Choo-Choo</p>
+                    <p>Choo-Choo! Add to the schedule in the form below.</p>
                 </div>
             </div>
         </div>
 
         <!--Table-->
-        <div class="container">
-            <div class="card">
-                <h5 class="card-header">Featured</h5>
+        <div class="container mb-3">
+            <div class="card border-info">
+                <h5 class="card-header bg-info text-light">Current Train Schedule:</h5>
                 <div class="card-body">
 
                     <table class="table table-light">
@@ -48,7 +51,7 @@
                                 <th scope="col">Train Name</th>
                                 <th scope="col">Destination</th>
                                 <th scope="col">Frequency (min)</th>
-                                <th scope="col">Next Arrival</th>
+                                <th scope="col">Next Arrival (Mil)</th>
                                 <th scope="col">Minutes Away</th>
                                 <th scope="col">Remove Row</th>
                             </tr>
@@ -58,18 +61,11 @@
                                 <th scope="row">Zac Train</th>
                                 <td>Colfax</td>
                                 <td>25</td>
-                                <td>05:30PM</td>
+                                <td>05:30</td>
                                 <td>15</td>
                                 <td>X</td>
                             </tr>
-                            <tr>
-                                <th scope="row">Zac Train</th>
-                                <td>Colfax</td>
-                                <td>25</td>
-                                <td>05:30PM</td>
-                                <td>15</td>
-                                <td>X</td>
-                            </tr>
+                      
 
                         </tbody>
                     </table>
@@ -78,9 +74,9 @@
         </div>
 
         <!--Form-->
-        <div class="container">
-            <div class="card">
-                <h5 class="card-header">Featured</h5>
+        <div class="container mb-3">
+            <div class="card border-info">
+                <h5 class="card-header bg-info text-light">Add a Train to the Schedule</h5>
                 <div class="card-body">
 
                     <form>
@@ -105,7 +101,7 @@
                         </div>
 
 
-                        <button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
+                        <button type="submit" class="btn btn-info" id="submit-button">Submit</button>
                     </form>
                 </div>
 
