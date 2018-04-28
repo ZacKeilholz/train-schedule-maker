@@ -1,6 +1,6 @@
 # **Train-Schedule-Maker** - a train scheduling app
 
-## Link: [gifTastic](https://zackeilholz.github.io/train-schedule-maker/)
+## Link: [Train-Schedule-Maker](https://zackeilholz.github.io/train-schedule-maker/)
 
 ## About:
 
